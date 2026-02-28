@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 public typealias HTTPMethod = Alamofire.HTTPMethod
+public typealias RequestInterceptor = Alamofire.RequestInterceptor
 
 public protocol ApiEndpoint: Sendable {
     var baseURL: URL? { get } // 默认 nil，使用 Config 的 baseURL
@@ -92,6 +93,11 @@ public struct DefaultApiConfiguration: ApiConfiguration {
     public var interceptor: RequestInterceptor? = nil
     public var decrypter: (any ApiDecrypter)?
     public var isDebugLogEnabled: Bool { true }
+    
+    public init(baseURL: URL, timeout: TimeInterval) {
+        self.baseURL = baseURL
+        self.timeout = timeout
+    }
 }
 
 public struct ApiProvider {
