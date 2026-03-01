@@ -100,7 +100,7 @@ public struct DefaultApiConfiguration: ApiConfiguration {
     }
 }
 
-public struct ApiProvider {
+public struct ApiProvider: Sendable {
     private let config: ApiConfiguration
     private let session: Session
     
